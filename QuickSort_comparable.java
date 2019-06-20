@@ -1,9 +1,12 @@
 import java.util.Arrays;
 
 public class QuickSort_comparable {
+	  
 
+		
 	public static void quickSort (Comparable comparableArray[], int lowIndex, int highIndex){
-
+				
+		
 		//at least one item must exist in the array 
 		if (lowIndex>=highIndex){
 			return;
@@ -35,29 +38,35 @@ public class QuickSort_comparable {
 
 			//compareTo will return 0 when it reaches the pivot - will exit loop
 			do {i++;} while (comparableArray[i].compareTo(pivot)<0);
+			compCount++;
 			//we dont have the protection as the previous loop. 
 			//So, add extra condition to prevent 'j' from overflowing outside the current sub array
 			do {j--;} while (comparableArray[j].compareTo(pivot)>0 &&(j>lowIndex));
-
+			compCount++;
+			
 			if (i<j){
 				swapItemsWithIndices(comparableArray, i, j);
+				swapCount++;
 			}
 			System.out.println("I :"+i + " J :"+j);
 		} while (i<j);
 
 		swapItemsWithIndices(comparableArray, highIndex, i);//bring pivot to i's position	
+		swapCount++;
 		System.out.println("Comparable array : "+Arrays.asList(comparableArray));
 
 		//the big subarray is partially sorted (agrees to invariant). Let's recurse and bring in more hands
 
 		quickSort(comparableArray, lowIndex, i-1); //sort subarray between low index and one before the pivot
 		quickSort(comparableArray, i+1, highIndex); //sort subarray between low index and one before the pivot
-	}
+		
+		}
 
 
 	//... since swapping with array is the easiest way to swap two objects
 	private static void swapItemsWithIndices(Comparable[] comparableArray, int firstItem, int secondItem) {
 		System.out.println("Swapping "+comparableArray[firstItem] +"  and  "+comparableArray[secondItem]);
+		
 		final Comparable tempItem=comparableArray[firstItem];
 		comparableArray[firstItem]=comparableArray[secondItem];
 		comparableArray[secondItem]=tempItem;
@@ -77,9 +86,10 @@ public class QuickSort_comparable {
 
 		//Integer[] unsortedArray=new Integer[]{1,32,121,1424,2,1214,121214,3535,754,343};
 		//Integer[] unsortedArray=new Integer[]{4,4,8,0,8,9,7,3,7,6}; 
-		Integer[] unsortedArray=new Integer[]{5,5,5,5,5,5,5,5,5,5};
+		String[] unsortedArray=new String[]{"B","C","D","E","F","A"	};
 
 		long startTime = System.nanoTime();
+		
 		System.out.println("Original array : "+Arrays.asList(unsortedArray));
 		quickSort(unsortedArray, 0, unsortedArray.length-1);
 
