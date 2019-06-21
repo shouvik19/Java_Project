@@ -2,9 +2,9 @@ import java.util.Arrays;
 
 public class QuickSort_comparable {
 	  
-
+	static int compCount=0;
 		
-	public static void quickSort (Comparable comparableArray[], int lowIndex, int highIndex){
+	public static void quickSort (Comparable comparableArray[], int lowIndex, int highIndex,compCount){
 				
 		
 		//at least one item must exist in the array 
@@ -46,13 +46,13 @@ public class QuickSort_comparable {
 			
 			if (i<j){
 				swapItemsWithIndices(comparableArray, i, j);
-				swapCount++;
+				
 			}
 			System.out.println("I :"+i + " J :"+j);
 		} while (i<j);
 
 		swapItemsWithIndices(comparableArray, highIndex, i);//bring pivot to i's position	
-		swapCount++;
+		
 		System.out.println("Comparable array : "+Arrays.asList(comparableArray));
 
 		//the big subarray is partially sorted (agrees to invariant). Let's recurse and bring in more hands
