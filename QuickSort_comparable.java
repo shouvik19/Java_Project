@@ -1,10 +1,10 @@
 import java.util.Arrays;
 
 public class QuickSort_comparable {
-	  
-	static int compCount=0;
-		
-	public static void quickSort (Comparable comparableArray[], int lowIndex, int highIndex,compCount){
+	 
+	 static int compincrement=0;
+	 
+	public static void quickSort (Comparable comparableArray[], int lowIndex, int highIndex){
 				
 		
 		//at least one item must exist in the array 
@@ -38,11 +38,12 @@ public class QuickSort_comparable {
 
 			//compareTo will return 0 when it reaches the pivot - will exit loop
 			do {i++;} while (comparableArray[i].compareTo(pivot)<0);
-			compCount++;
+			compincrement++; // Adding the number of comparisons to the counter
+			
 			//we dont have the protection as the previous loop. 
 			//So, add extra condition to prevent 'j' from overflowing outside the current sub array
 			do {j--;} while (comparableArray[j].compareTo(pivot)>0 &&(j>lowIndex));
-			compCount++;
+			compincrement++; // Adding the number of comparisons to the counter
 			
 			if (i<j){
 				swapItemsWithIndices(comparableArray, i, j);
@@ -85,8 +86,9 @@ public class QuickSort_comparable {
 	public static void main(String[] args) {
 
 		//Integer[] unsortedArray=new Integer[]{1,32,121,1424,2,1214,121214,3535,754,343};
-		//Integer[] unsortedArray=new Integer[]{4,4,8,0,8,9,7,3,7,6}; 
-		String[] unsortedArray=new String[]{"B","C","D","E","F","A"	};
+		//float[] unsortedArray=new float[]{4,4,8,0,8,9,7,3,7,6}; 
+		String[] unsortedArray=new String[]{"B","C","D","E","F","A"};
+		//double[] unsortedArray=new double[]{3112,134,555,61.5,2.5,4.6,31};
 
 		long startTime = System.nanoTime();
 		
@@ -94,7 +96,11 @@ public class QuickSort_comparable {
 		quickSort(unsortedArray, 0, unsortedArray.length-1);
 
 		System.out.println("Sorted array : "+Arrays.asList(unsortedArray));
+		
+		System.out.print("total time in nano-seconds:");
 		System.out.println(System.nanoTime()-startTime);
+		System.out.println("Number of comparisons "+compincrement);
+		
 	}
 
 }
